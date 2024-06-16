@@ -7,7 +7,7 @@ class User(Base):
     
     id = Column(Integer, primary_key=True)
     email = Column(String, unique=True, index=True)
-    hashed_password = Column(String)
+    password = Column(String)
     
     orders = relationship("Order", back_populates="owner")
     # items = relationship("Item", back_populates="owner")
@@ -37,7 +37,7 @@ class Item(Base):
 
 
 class Photo(Base):
-    __tablename__ = "Photos"
+    __tablename__ = "photos"
     
     id = Column(Integer, primary_key=True)
     src = Column(String)

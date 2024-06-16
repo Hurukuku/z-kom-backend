@@ -1,5 +1,8 @@
 from pydantic import BaseModel
 
+class Token(BaseModel):
+    access_token: str
+    token_type: str
 
 class ItemBase(BaseModel):
     name: str
@@ -26,7 +29,7 @@ class Item(ItemBase):
 class ItemCreate(ItemBase):
     pass
 
-class CreateOrder(OrderBase):
+class OrderCreate(OrderBase):
     items: list[Item]
     owner_id: int
 
@@ -51,6 +54,16 @@ class User(UserBase):
 
     class Config:
         orm_mode = True
+        
+class UserDB(User):
+    password: str
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
 
 
+class TokenData(BaseModel):
+    username: str | None = None
+    
 Order.model_rebuild()
